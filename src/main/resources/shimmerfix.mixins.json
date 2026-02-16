@@ -3,9 +3,10 @@
 	"package": "xyz.dcicu.shimmerfix.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"IRCConnectionBlocker",
 		"HaikuLoggerMixin",
-		"MacroProtectorMixin"
+		"IRCConnectionBlocker",
+		"MacroProtectorMixin_DisableRestore",
+		"MacroProtectorMixin_Settings"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -1,0 +1,62 @@
+# ShimmerAddons Custom License / 自定义许可证
+
+Copyright (c) 2025 DcICU01. All Rights Reserved.
+
+Project Repository: https://github.com/DcICU01/ShimmerAddons
+
+---
+
+## English Version
+
+### Grant of Rights
+Permission is hereby granted to any person obtaining a copy of this software and associated documentation files (the "Software") to:
+- **View** the source code.
+- **Use** the Software for personal, non-commercial purposes.
+- **Study** and **learn** from the code.
+- **Contribute** improvements or bug fixes via pull requests to the original repository.
+
+### Restrictions
+1. **Modification and Redistribution**  
+   You may **not** distribute or sublicense any modified or derivative version of the Software, in whole or in part, without the **explicit written permission** of the copyright holder. This includes, but is not limited to, repackaging as a mod file, uploading to mod platforms, or including the Software as part of another distribution.
+
+2. **Commercial Use**  
+   Any commercial use of the Software or its derivatives is strictly prohibited without prior written consent from the copyright holder.
+
+### Disclaimer
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+### How to Obtain Permission
+For redistribution or commercial licensing inquiries, please contact:
+- GitHub Issues: [https://github.com/DcICU01/ShimmerAddons/issues](https://github.com/DcICU01/ShimmerAddons/issues)
+- Email: [your-email@example.com]  <!-- Replace with your email if desired -->
+
+---
+
+## 中文版本
+
+### 授权范围
+任何人获得本软件及相关文档（以下简称“软件”）的副本后，允许进行以下行为：
+- **查看**源代码。
+- **使用**软件用于个人、非商业目的。
+- **学习**和研究代码。
+- **贡献**：通过 Pull Request 向原始仓库提交改进或错误修复。
+
+### 限制
+1. **修改与分发**  
+   未经版权所有者的**明确书面许可**，不得将本软件的修改版本或衍生作品（整体或部分）进行分发或再许可。这包括但不限于：打包为模组文件、上传至模组平台、或将软件作为其他分发的一部分。
+
+2. **商业用途**  
+   未经版权所有者的书面同意，严禁将本软件或其衍生作品用于任何商业目的。
+
+### 免责声明
+本软件按“原样”提供，不提供任何明示或暗示的保证，包括但不限于适销性、特定用途适用性和非侵权性的保证。在任何情况下，作者或版权持有人均不对任何索赔、损害或其他责任负责，无论这些责任是基于合同、侵权或其他方式引起的，也不管是否与软件或使用软件或其他交易有关。
+
+### 如何获得授权
+如需申请分发授权或商业授权，请通过以下方式联系：
+- GitHub Issues：[https://github.com/DcICU01/ShimmerAddons/issues](https://github.com/DcICU01/ShimmerAddons/issues)
+- 邮箱：[your-email@example.com]  <!-- 如需留下邮箱，请替换此处 -->
+
+---
+
+**Note / 注意**: This license is not an Open Source license approved by OSI. It grants you the right to view, use, and contribute to the code, but any redistribution or commercial use requires explicit permission.  
+本许可证并非 OSI 认可的开源许可证。它允许您查看、使用和贡献代码，但任何重新分发或商业使用均需获得明确授权。

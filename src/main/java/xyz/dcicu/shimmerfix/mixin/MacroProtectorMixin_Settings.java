@@ -17,9 +17,10 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xyz.dcicu.shimmerfix.access.MacroProtectorAccessor;
 
 @Mixin(value = MacroProtector.class, remap = false)
-public abstract class MacroProtectorMixin {
+public abstract class MacroProtectorMixin_Settings {
 
     @Unique
     private final NumberSetting protectRange = new NumberSetting(
@@ -36,16 +37,22 @@ public abstract class MacroProtectorMixin {
     );
 
     @Unique
-    private boolean protectionTriggered = false; // 防止同一玩家持续触发
+    private final BooleanSetting autoRestore = new BooleanSetting(
+            "Auto Restore",
+            "When other players are out of range, automatically restore the macros",
+            false
+    );
 
     @Unique
-    private boolean prevEnableState = false;      // 记录上一 tick 的开关状态
+    private boolean protectionTriggered = false;
 
-    // 在构造后添加设置到父类
+    @Unique
+    private boolean prevEnableState = false;
+
     @Inject(method = "<init>", at = @At("RETURN"))
     private void onInit(CallbackInfo ci) {
         MacroProtector self = (MacroProtector) (Object) this;
-        self.addSettings(enableRangeProtect, protectRange);
+        self.addSettings(enableRangeProtect, protectRange, autoRestore);
     }
 
     @ShimmerSubscribe
@@ -57,25 +64,20 @@ public abstract class MacroProtectorMixin {
 
         boolean currentEnable = enableRangeProtect.isEnabled();
 
-        // 检测开关从关闭变为开启，重置触发标志，使保护能够立即生效
+        // 检测开关从关闭变为开启，重置触发标志
         if (currentEnable && !prevEnableState) {
             protectionTriggered = false;
         }
         prevEnableState = currentEnable;
 
-        // 模块未启用、开关关闭或范围为0时，不执行后续逻辑
-        if (!self.isEnabled()) return;
-        if (!currentEnable || protectRange.getValue() <= 0) return;
+        if (!self.isEnabled() || !currentEnable || protectRange.getValue() <= 0) return;
 
         double range = protectRange.getValue();
         boolean playerNearby = false;
 
-        // 遍历所有实体，寻找附近的其他真实玩家
         for (Entity entity : mc.level.entitiesForRendering()) {
             if (entity instanceof Player && entity != mc.player) {
-                // 排除 NPC（如村民或特定条件的远程玩家）
                 if (EntityUtil.isNPC(entity)) continue;
-
                 if (mc.player.distanceTo(entity) <= range) {
                     playerNearby = true;
                     break;
@@ -85,10 +87,9 @@ public abstract class MacroProtectorMixin {
 
         if (playerNearby) {
             if (!protectionTriggered) {
-                // 禁用所有需要关闭的宏模块
+                // 玩家进入范围且未触发保护 → 触发禁用
                 self.disableAllMacro();
 
-                // 系统托盘通知（如果用户开启）
                 if (self.systemTray.isEnabled()) {
                     WindowsNotificationUtils.sendNotification(
                             "MacroProtector",
@@ -96,7 +97,6 @@ public abstract class MacroProtectorMixin {
                             2
                     );
                 }
-                // 播放音效（如果用户开启）
                 if (self.sound.isEnabled()) {
                     mc.level.playSound(
                             mc.player,
@@ -109,7 +109,31 @@ public abstract class MacroProtectorMixin {
                 protectionTriggered = true;
             }
         } else {
-            protectionTriggered = false; // 玩家离开范围，重置标志以便下次触发
+            // 玩家离开范围
+            if (protectionTriggered && autoRestore.isEnabled()) {
+                // 自动恢复被禁用的宏
+                MacroProtectorAccessor accessor = (MacroProtectorAccessor) self;
+                accessor.restoreDisabledMacros();
+
+                if (self.systemTray.isEnabled()) {
+                    WindowsNotificationUtils.sendNotification(
+                            "MacroProtector",
+                            "玩家已远离，自动恢复宏",
+                            2
+                    );
+                }
+                if (self.sound.isEnabled()) {
+                    mc.level.playSound(
+                            mc.player,
+                            mc.player.blockPosition(),
+                            SoundEvents.EXPERIENCE_ORB_PICKUP,
+                            SoundSource.PLAYERS,
+                            3.0F, 1.0F
+                    );
+                }
+            }
+            // 无论是否自动恢复，都将触发标志重置（表示当前未触发保护状态）
+            protectionTriggered = false;
         }
     }
 }

@@ -1,11 +1,12 @@
 {
 	"schemaVersion": 1,
 	"id": "shimmerfix",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"name": "Shimmer Addons",
 	"description": "ShimmerAddons",
 	"authors": [
-		"DcICU"
+		"DcICU",
+		"green cat"
 	],
 	"contact": {
 		"homepage": "https://github.com/DcICU01/ShimmerAddons",

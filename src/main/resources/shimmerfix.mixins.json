@@ -1,17 +1,19 @@
 {
-	"required": true,
-	"package": "xyz.dcicu.shimmerfix.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"HaikuLoggerMixin",
-		"IRCConnectionBlocker",
-		"MacroProtectorMixin_DisableRestore",
-		"MacroProtectorMixin_Settings"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
+  "required": true,
+  "package": "xyz.dcicu.shimmerfix.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AutoFishMixin",
+    "HaikuLoggerMixin",
+    "IRCConnectionBlocker",
+    "MacroProtectorMixin_DisableRestore",
+    "MacroProtectorMixin_Settings",
+    "ModuleManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
 	}
 }
